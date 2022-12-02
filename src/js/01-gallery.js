@@ -33,10 +33,14 @@ function galleryOnClick(e) {
         <img src="${bigUrl}" >
     </div>`);
   instance.show();
-
-  document.addEventListener("keydown", function (e) {
+  function closeModal (e){
+    console.log(e);
     if (e.key === "Escape") {
       instance.close();
+      document.removeEventListener("keydown", closeModal);
+      
     }
-  });
+  }
+
+  document.addEventListener("keydown", closeModal);
 }
