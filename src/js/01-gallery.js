@@ -31,13 +31,20 @@ function galleryOnClick(e) {
   const instance = basicLightbox.create(`
     <div class="modal">
         <img src="${bigUrl}" >
-    </div>`);
+    </div>`,{
+      onShow: (instance) => {
+      document.addEventListener("keydown", closeModal);
+  },
+     onClose: (instance) => {
+      document.removeEventListener("keydown", closeModal);
+},
+})
   instance.show();
   function closeModal (e){
     console.log(e);
     if (e.key === "Escape") {
       instance.close();
-      document.removeEventListener("keydown", closeModal);
+
       
     }
   }
